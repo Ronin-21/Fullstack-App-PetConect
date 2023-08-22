@@ -11,8 +11,8 @@ const router = Router();
 
 // Define routes and controllers
 router.get("/", getUsers);
-router.get("/profile/:id", auth, getUserProfile);
-router.patch("/:id", auth, updateUser);
-router.delete("/:id", auth, deleteUser);
+router.get("/profile", auth, getUserProfile);
+router.patch("/profile/:id", auth, updateUser);
+router.delete("/profile/:id", auth, deleteUser);
 
 export default router;

@@ -10,14 +10,14 @@ export const getUsers = async (req, res) => {
     const result = await User.findAll();
     res.json(result);
   } catch (error) {
-    res.status(500).res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
 // Get user profile and its pets
 export const getUserProfile = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.user;
     const result = await User.findAll({
       include: [
         {
@@ -32,9 +32,9 @@ export const getUserProfile = async (req, res) => {
       return res.status(404).json({ message: "Not Found" });
     }
 
-    res.json(result);
+    res.json(result[0]);
   } catch (error) {
-    res.status(500).res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -55,7 +55,7 @@ export const updateUser = async (req, res) => {
 
     res.json({ message: "User changed" });
   } catch (error) {
-    res.status(500).res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -68,6 +68,6 @@ export const deleteUser = async (req, res) => {
 
     res.json({ message: "User deleted" });
   } catch (error) {
-    res.status(500).res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };

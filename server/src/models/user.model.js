@@ -10,7 +10,7 @@ export const User = sequelize.define(
       primaryKey: true,
     },
     user_full_name: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(30),
       allowNull: false,
     },
     user_email: {
@@ -32,7 +32,7 @@ export const User = sequelize.define(
       type: DataTypes.STRING(100),
     },
     user_avatar: {
-      type: DataTypes.BLOB(),
+      type: DataTypes.STRING(255),
     },
   },
   {

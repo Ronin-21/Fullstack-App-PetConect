@@ -5,7 +5,7 @@ const userSchema = z.object({
     .string({
       required_error: "Name is required",
     })
-    .max(20),
+    .max(30),
   user_email: z.string().email(),
   user_password: z
     .string()

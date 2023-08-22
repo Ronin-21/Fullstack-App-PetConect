@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color-light: #b097bf;
+  --primary-color: #4f6e98;
+  --primary-color-dark: #344b6a;
+  --secondary-color-light: #fbd46a;
+  --secondary-color: #f3b51e;
+  --tertiary-color: #683832;
+  --white: #fbfbfb;
+  --black: #191919;
+  --bg-gradient: linear-gradient(
+    90deg,
+    rgba(251, 212, 106, 1) 0%,
+    rgba(176, 151, 191, 1) 40%,
+    rgba(25, 25, 25, 1) 90%
+  );
+  --text-color: #2e2e2e;
+  --title-font: "Lato", sans-serif;
+  --body-font: "Kurale", serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 400px;
+  height: 400px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+}

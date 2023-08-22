@@ -40,7 +40,7 @@ export const Pet = sequelize.define(
       type: DataTypes.BOOLEAN(),
     },
     pet_avatar: {
-      type: DataTypes.BLOB(),
+      type: DataTypes.STRING(255),
     },
   },
   {

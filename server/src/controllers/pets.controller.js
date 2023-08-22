@@ -9,7 +9,7 @@ export const getPets = async (req, res) => {
     const result = await Pet.findAll();
     res.json(result);
   } catch (error) {
-    res.status(500).res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -18,7 +18,7 @@ export const getPet = async (req, res) => {
   try {
     const { id } = req.params;
     const result = await Pet.findOne({
-      where: { id },
+      where: { pet_id: id },
     });
 
     if (result === null) {
@@ -27,23 +27,34 @@ export const getPet = async (req, res) => {
 
     res.json(result);
   } catch (error) {
-    res.status(500).res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
 // Create a Pet
 export const addPet = async (req, res) => {
   try {
-    const result = validatePet(req.body);
+    const age = parseInt(req.body.pet_age);
+    const weight = parseFloat(req.body.pet_age);
+    const chip = Boolean(req.body.pet_age);
+    const avatar = "http://localhost:4000/public/" + req.file.filename;
+
+    const result = validatePet({
+      ...req.body,
+      pet_age: age,
+      pet_weight: weight,
+      pet_chip: chip,
+      pet_avatar: avatar,
+    });
+    const { id } = req.user;
 
     if (result.error) {
       return res.status(400).json({ error: JSON.parse(result.error.message) });
     }
 
-    await Pet.sync();
     await Pet.create({
       ...result.data,
-      owner: "d0c9878e-87c8-4972-9d3d-7002b01d30ab",
+      owner: id,
     });
 
     res.status(201).json({ message: "Pet added" });
@@ -69,7 +80,7 @@ export const updatePet = async (req, res) => {
 
     res.json({ message: "Pet changed" });
   } catch (error) {
-    res.status(500).res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -82,6 +93,6 @@ export const deletePet = async (req, res) => {
 
     res.json({ message: "Pet deleted" });
   } catch (error) {
-    res.status(500).res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };

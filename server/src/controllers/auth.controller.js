@@ -20,13 +20,21 @@ export const registerUser = async (req, res) => {
     }
 
     const hashPswd = await bcrypt.hash(data.user_password, 10);
-    const newUser = await User.create({ ...data, user_password: hashPswd });
+    const avatar = "http://localhost:4000/public/" + req.file.filename;
+    const newUser = await User.create({
+      ...data,
+      user_password: hashPswd,
+      user_avatar: avatar,
+    });
 
     const token = await createAccessToken({
       id: newUser.user_id,
     });
 
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      sameSite: "none",
+      secure: true,
+    });
     res.status(201).json({ message: "User registered successfully!" });
 
     // Enviar el token como respuesta
@@ -65,7 +73,10 @@ export const loginUser = async (req, res) => {
       id: userFound.user_id,
     });
 
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      sameSite: "none",
+      secure: true,
+    });
     res.status(201).json({ message: "Login successfully!" });
 
     // Enviar el token como respuesta
@@ -76,13 +87,20 @@ export const loginUser = async (req, res) => {
 };
 
 export const logoutUser = async (req, res) => {
-  const { token } = req.cookies;
+  try {
+    const { token } = req.cookies;
 
-  if (!token) {
-    return res.status(400).json({ message: "No token in cookies" });
+    if (!token) {
+      return res.status(400).json({ message: "No token in cookies" });
+    }
+
+    res.clearCookie("token", {
+      sameSite: "none",
+      secure: true,
+    });
+
+    res.status(200).json({ message: "Logout successfuly!" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-
-  res.clearCookie("token");
-
-  return res.status(200);
 };
