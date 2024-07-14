@@ -1,6 +1,6 @@
 import { Pet } from "../models/pet.model.js";
 import { User } from "../models/user.model.js";
-import { validatePartialUser, validateUser } from "../schemas/user.schema.js";
+import { validatePartialUser } from "../schemas/user.schema.js";
 
 // Set controllers
 
@@ -18,7 +18,7 @@ export const getUsers = async (req, res) => {
 export const getUserProfile = async (req, res) => {
   try {
     const { id } = req.user;
-    const result = await User.findAll({
+    const result = await User.findOne({
       include: [
         {
           model: Pet,
@@ -32,7 +32,7 @@ export const getUserProfile = async (req, res) => {
       return res.status(404).json({ message: "Not Found" });
     }
 
-    res.json(result[0]);
+    res.json(result);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -41,16 +41,15 @@ export const getUserProfile = async (req, res) => {
 // Update a user
 export const updateUser = async (req, res) => {
   try {
-    const result = validatePartialUser(req.body);
+    const { id } = req.user;
+    const { data, error } = validatePartialUser(req.body);
 
-    if (result.error) {
-      return res.status(400).json({ error: JSON.parse(result.error.message) });
+    if (error) {
+      return res.status(400).json({ error: JSON.parse(error.message) });
     }
 
-    const { id } = req.params;
-
-    await User.update(result.data, {
-      where: { id },
+    await User.update(data, {
+      where: { user_id: id },
     });
 
     res.json({ message: "User changed" });

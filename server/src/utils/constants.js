@@ -13,6 +13,7 @@ export const DB_USER = process.env.DB_USER;
 export const DB_PASSWORD = process.env.DB_PASSWORD;
 export const SECRET = process.env.SECRET;
 export const FRONTEND_URL = process.env.FRONTEND_URL;
+export const UPLOADS_IMG_URL = process.env.UPLOADS_IMG_URL;
 
 // constante con la ruta actual
 export const CURRENT_DIR = dirname(fileURLToPath(import.meta.url));

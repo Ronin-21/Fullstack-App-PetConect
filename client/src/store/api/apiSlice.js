@@ -7,14 +7,14 @@ export const apiSlice = createApi({
     credentials: "include",
     // Comprueba si existe un token y lo envia en el header
     /* prepareHeaders: (headers, { getState }) => {
-			const token = getState().authToken.token;
-			if (token) {
-				headers.set('authorization', `Bearer ${token}`);
-			}
-			return headers;
-		}, */
+      const token = getState().authToken.token;
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
+    }, */
   }),
-  tagTypes: ["Pets"],
+  tagTypes: ["Pets", "User"],
   endpoints: (builder) => ({
     // Registra un usuario
     registerUser: builder.mutation({
@@ -31,6 +31,7 @@ export const apiSlice = createApi({
         method: "POST",
         body: userData,
       }),
+      invalidatesTags: ["User"],
     }),
     // Logout
     logoutUser: builder.query({
@@ -40,6 +41,15 @@ export const apiSlice = createApi({
     getUserProfile: builder.query({
       query: () => "users/profile",
       providesTags: ["User"],
+    }),
+    // Edita los datos del Usuario
+    updateUser: builder.mutation({
+      query: (userData) => ({
+        url: `users/profile`,
+        method: "PATCH",
+        body: userData,
+      }),
+      invalidatesTags: ["User"],
     }),
     // Trae todas las mascotas
     getPets: builder.query({
@@ -61,16 +71,33 @@ export const apiSlice = createApi({
     }),
     // Edita los datos de una mascota con el ID de la mascota
     updatePet: builder.mutation({
-      query: (id, petData) => ({
+      query: ({ id, petData }) => ({
         url: `pets/${id}`,
         method: "PATCH",
         body: petData,
       }),
+      invalidatesTags: ["Pets", "User"],
     }),
     // Elimina una mascota con el ID de la mascota
     eliminatePet: builder.mutation({
       query: (id) => ({
         url: `pets/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Pets"],
+    }),
+    // Da un like a una mascota
+    setLikes: builder.mutation({
+      query: (petId) => ({
+        url: `users/likes/${petId}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["Pets"],
+    }),
+    // Da un dislike a una mascota
+    setDislikes: builder.mutation({
+      query: (petId) => ({
+        url: `users/likes/${petId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Pets"],
@@ -85,8 +112,11 @@ export const {
   useUpdatePetMutation,
   useEliminatePetMutation,
   useGetUserProfileQuery,
+  useLazyGetUserProfileQuery,
+  useUpdateUserMutation,
   useLoginUserMutation,
-  useLogoutUserMutation,
   useRegisterUserMutation,
   useLazyLogoutUserQuery,
+  useSetLikesMutation,
+  useSetDislikesMutation,
 } = apiSlice;

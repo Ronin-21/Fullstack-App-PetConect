@@ -1,6 +1,6 @@
 import multer from "multer";
 import { join } from "path";
-import { CURRENT_DIR } from "../config.js";
+import { CURRENT_DIR } from "../utils/constants.js";
 
 export const uploadImg = multer({
   storage: multer.diskStorage({

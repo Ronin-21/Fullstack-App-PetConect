@@ -13,7 +13,7 @@ const router = Router();
 
 // Define routes and controllers
 router.get("/", getPets);
-router.get("/:id", auth, getPet);
+router.get("/:id", getPet);
 router.post("/", auth, uploadImg.single("pet_avatar"), addPet);
 router.patch("/:id", auth, updatePet);
 router.delete("/:id", auth, deletePet);

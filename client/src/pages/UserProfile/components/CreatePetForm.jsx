@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -41,8 +41,21 @@ const schema = yup
 
 const CreatePetForm = () => {
   const [createPet, { isSuccess, isError }] = useCreatePetMutation();
-
   const MySwal = withReactContent(Swal);
+
+  // Convertir imagen a Base64 para preview
+  const [base64Image, setBase64Image] = useState("")
+
+  const convertToBase64 = (e) => {
+    let reader = new FileReader()
+    reader.readAsDataURL(e.target.files[0])
+    reader.onload = () => {
+      setBase64Image(reader.result)
+    }
+    reader.onerror = err => {
+      console.log(err);
+    }
+  }
 
   const {
     register,
@@ -169,20 +182,22 @@ const CreatePetForm = () => {
         <label htmlFor="chip">Chip</label>
         <input {...register("pet_chip")} type="checkbox" id="chip" />
       </div>
-      <div className="w-full">
+      <div className="w-full items-center flex flex-col gap-1">
         <input
           {...register("pet_avatar")}
           type="file"
           accept=".jpg, .jpeg, .png"
           className="w-full p-3 bg-white border-b outline-none border-primary-light"
+          onChange={convertToBase64}
         />
         <p className="text-sm text-center text-tertiary">
           {errors.pet_avatar?.message}
         </p>
+        {base64Image == "" || base64Image == null ? "" : <img className="w-auto h-28" src={base64Image} alt="avatar" />}
       </div>
       <button
         type="submit"
-        className="bg-primary px-5 py-3 rounded hover:bg-primary-dark transition-all text-secondary-light shadow-md min-w-[250px] mt-4 outline-none"
+        className="bg-primary px-5 py-3 rounded hover:bg-primary-dark transition-all text-secondary-light shadow-md min-w-[250px] mt-2 outline-none"
       >
         Enviar
       </button>

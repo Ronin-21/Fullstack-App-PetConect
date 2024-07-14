@@ -1,13 +1,8 @@
 import { useParams } from "react-router-dom";
-import {
-  useGetPetByIdQuery,
-  useGetUserProfileQuery,
-} from "../../store/api/apiSlice";
+import { useGetPetByIdQuery } from "../../store/api/apiSlice";
 
 const PetProfile = () => {
   const params = useParams();
-  const { data: user } = useGetUserProfileQuery();
-
   const { data: pet } = useGetPetByIdQuery(params.id);
 
   return (
@@ -15,19 +10,20 @@ const PetProfile = () => {
       {/* Aside with pet's owner profile */}
       <div className="flex flex-col gap-3 flex-shrink-0 w-60 bg-white rounded overflow-hidden shadow-md p-5">
         <img
-          src="https://randomuser.me/api/portraits/men/9.jpg"
+          //src="https://randomuser.me/api/portraits/men/9.jpg"
+          src={pet?.User?.user_avatar}
           alt="avatar"
           className="object-cover w-40 h-40 rounded-full self-center"
         />
         <div className="flex flex-col gap-2">
           <h6 className="text-xl font-semibold text-primary-dark text-center">
-            {user?.user_full_name}
+            {pet?.User?.user_full_name}
           </h6>
-          <p className="text-lg text-center">{user?.user_address}</p>
+          <p className="text-lg text-center">{pet?.User?.user_address}</p>
           <div className="text-tertiary text-sm">
-            <p>{user?.user_country}</p>
-            <p>{user?.user_city}</p>
-            <p>{user?.user_email}</p>
+            <p>{pet?.User?.user_country}</p>
+            <p>{pet?.User?.user_city}</p>
+            <p>{pet?.User?.user_email}</p>
           </div>
         </div>
       </div>
@@ -37,7 +33,11 @@ const PetProfile = () => {
           <h3 className="text-4xl font-semibold text-center text-tertiary">
             {pet?.pet_full_name}
           </h3>
-          <img src={pet?.img} alt="pet" className="object-cover w-full h-80" />
+          <img
+            src={pet?.pet_avatar}
+            alt="pet"
+            className="object-cover w-full h-80"
+          />
           <h6 className="text-xl font-semibold text-[--primary-color-dark]">
             Datos de la mascota
           </h6>

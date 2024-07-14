@@ -6,15 +6,14 @@ import { store } from "../../../store/store";
 import EditPetForm from "./EditPetForm";
 
 const PetCard = ({ info }) => {
-  const MySwal = withReactContent(Swal);
-
   const [eliminatePet] = useEliminatePetMutation();
+  const MySwal = withReactContent(Swal);
 
   const handleEditPet = () => {
     MySwal.fire({
       html: (
         <Provider store={store}>
-          <EditPetForm id={info.id} />
+          <EditPetForm id={info?.pet_id} />
         </Provider>
       ),
       showConfirmButton: false,

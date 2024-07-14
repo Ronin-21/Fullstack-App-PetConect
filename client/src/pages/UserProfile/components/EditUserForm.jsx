@@ -4,36 +4,29 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import * as yup from "yup";
-import { useUpdatePetMutation } from "../../../store/api/apiSlice";
+import { useUpdateUserMutation } from "../../../store/api/apiSlice";
 
 const schema = yup
   .object({
-    pet_full_name: yup
+    user_full_name: yup
       .string()
       .required("Por favor complete el campo requerido"),
-    pet_description: yup
-      .string()
-      .max(150)
-      .required("Por favor complete el campo requerido"),
-    pet_breed: yup.string().required("Por favor complete el campo requerido"),
-    pet_gender: yup.string().required("Por favor complete el campo requerido"),
-    pet_age: yup
-      .number()
-      .positive()
-      .typeError("Por favor ingrese un número válido"),
-    pet_weight: yup
-      .number()
-      .positive()
-      .typeError("Por favor ingrese un número válido"),
-    pet_nationality: yup
+    user_address: yup
       .string()
       .required("Por favor complete el campo requerido"),
-    pet_chip: yup.boolean(),
+    user_country: yup
+      .string()
+      .required("Por favor complete el campo requerido"),
+    user_city: yup.string().required("Por favor complete el campo requerido"),
+    user_email: yup
+      .string()
+      .email()
+      .required("Por favor complete el campo requerido"),
   })
   .required();
 
-const EditPetForm = ({ id }) => {
-  const [updatePet, { isSuccess, isError }] = useUpdatePetMutation();
+const EditUserForm = () => {
+  const [updateUser, { isSuccess, isError }] = useUpdateUserMutation();
   const MySwal = withReactContent(Swal);
 
   const {
@@ -47,7 +40,7 @@ const EditPetForm = ({ id }) => {
   });
 
   const formSubmit = (data) => {
-    updatePet({ id, petData: data });
+    updateUser(data);
     reset();
   };
 
@@ -74,80 +67,54 @@ const EditPetForm = ({ id }) => {
     >
       <div className="w-full">
         <input
-          {...register("pet_full_name")}
-          placeholder="Nombre de la mascota"
+          {...register("user_full_name")}
+          placeholder="Nombre de Usuario"
           autoFocus
           className="p-3 outline-none w-full border-b border-primary-light bg-white"
         />
         <p className="text-tertiary text-center text-sm">
-          {errors.pet_full_name?.message}
+          {errors.user_full_name?.message}
         </p>
       </div>
       <div className="w-full">
         <textarea
-          {...register("pet_description")}
-          placeholder="Escriba una breve descripción"
+          {...register("user_address")}
+          placeholder="Dirección o Domicilio"
           className="p-3 outline-none w-full border-b border-primary-light bg-white resize-none"
         />
         <p className="text-tertiary text-center text-sm">
-          {errors.pet_description?.message}
+          {errors.user_address?.message}
         </p>
       </div>
       <div className="w-full">
         <input
-          {...register("pet_breed")}
-          placeholder="Raza"
+          {...register("user_country")}
+          placeholder="País"
           className="p-3 outline-none w-full border-b border-primary-light bg-white"
         />
         <p className="text-tertiary text-center text-sm">
-          {errors.pet_breed?.message}
-        </p>
-      </div>
-      <div className="w-full">
-        <select
-          {...register("pet_gender")}
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
-        >
-          <option value="Macho">Macho</option>
-          <option value="Hembra">Hembra</option>
-        </select>
-        <p className="text-tertiary text-center text-sm">
-          {errors.pet_gender?.message}
+          {errors.user_country?.message}
         </p>
       </div>
       <div className="w-full">
         <input
-          {...register("pet_age")}
-          placeholder="Edad"
+          {...register("user_city")}
+          placeholder="Ciudad"
           className="p-3 outline-none w-full border-b border-primary-light bg-white"
         />
         <p className="text-tertiary text-center text-sm">
-          {errors.pet_age?.message}
+          {errors.user_city?.message}
         </p>
       </div>
       <div className="w-full">
         <input
-          {...register("pet_weight")}
-          placeholder="Peso"
+          {...register("user_email")}
+          placeholder="Email"
           className="p-3 outline-none w-full border-b border-primary-light bg-white"
         />
         <p className="text-tertiary text-center text-sm">
-          {errors.pet_weight?.message}
+          {errors.user_email?.message}
         </p>
-      </div>
-      <div className="w-full">
-        <input
-          {...register("pet_nationality")}
-          placeholder="Nacionalidad"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
-        />
-        <p className="text-tertiary text-center text-sm">
-          {errors.pet_nationality?.message}
-        </p>
-      </div>
-      <div className="w-full flex items-center gap-4">
-        <label htmlFor="chip">Chip</label>
-        <input {...register("pet_chip")} type="checkbox" id="chip" />
       </div>
       <button
         type="submit"
@@ -158,4 +125,4 @@ const EditPetForm = ({ id }) => {
     </form>
   );
 };
-export default EditPetForm;
+export default EditUserForm;

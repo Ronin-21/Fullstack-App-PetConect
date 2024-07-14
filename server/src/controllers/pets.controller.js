@@ -1,4 +1,7 @@
+import { UPLOADS_IMG_URL } from "../utils/constants.js";
+import { Likes } from "../models/likes.model.js";
 import { Pet } from "../models/pet.model.js";
+import { User } from "../models/user.model.js";
 import { validatePartialPet, validatePet } from "../schemas/pet.schema.js";
 
 // Set controllers
@@ -6,7 +9,8 @@ import { validatePartialPet, validatePet } from "../schemas/pet.schema.js";
 // Get all pets
 export const getPets = async (req, res) => {
   try {
-    const result = await Pet.findAll();
+    const result = await Pet.findAll({ include: Likes });
+
     res.json(result);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -19,6 +23,7 @@ export const getPet = async (req, res) => {
     const { id } = req.params;
     const result = await Pet.findOne({
       where: { pet_id: id },
+      include: [User, Likes],
     });
 
     if (result === null) {
@@ -37,7 +42,7 @@ export const addPet = async (req, res) => {
     const age = parseInt(req.body.pet_age);
     const weight = parseFloat(req.body.pet_age);
     const chip = Boolean(req.body.pet_age);
-    const avatar = "http://localhost:4000/public/" + req.file.filename;
+    const avatar = UPLOADS_IMG_URL + req.file.filename;
 
     const result = validatePet({
       ...req.body,
@@ -66,16 +71,15 @@ export const addPet = async (req, res) => {
 // Update a Pet
 export const updatePet = async (req, res) => {
   try {
-    const result = validatePartialPet(req.body);
+    const { id } = req.params;
+    const { data, error } = validatePartialPet(req.body);
 
-    if (result.error) {
+    if (error) {
       return res.status(400).json({ error: JSON.parse(result.error.message) });
     }
 
-    const { id } = req.params;
-
-    await Pet.update(result.data, {
-      where: { id },
+    await Pet.update(data, {
+      where: { pet_id: id },
     });
 
     res.json({ message: "Pet changed" });

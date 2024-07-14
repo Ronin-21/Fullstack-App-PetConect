@@ -6,21 +6,24 @@ import { useGetUserProfileQuery } from "../../store/api/apiSlice";
 import { store } from "../../store/store";
 import CreatePetForm from "./components/CreatePetForm";
 import PetCard from "./components/PetCard";
+import EditUserForm from "./components/EditUserForm";
 
 const UserProfile = () => {
-  const { data: user } = useGetUserProfileQuery();
-  console.log(user);
-
   const MySwal = withReactContent(Swal);
+  const { data: user } = useGetUserProfileQuery();
 
-  /* const handleEditUser = () => {
-		MySwal.fire({
-			html: <EditUserForm />,
-			showConfirmButton: false,
-			width: 'fit-content',
-			scrollbarPadding: false,
-		});
-	}; */
+  const handleEditUser = () => {
+    MySwal.fire({
+      html: (
+        <Provider store={store}>
+          <EditUserForm id={user.user_id} />
+        </Provider>
+      ),
+      showConfirmButton: false,
+      width: "fit-content",
+      scrollbarPadding: false,
+    });
+  };
 
   const handleCreatePet = () => {
     MySwal.fire({
@@ -60,7 +63,10 @@ const UserProfile = () => {
               <p>{user?.user_email}</p>
             </div>
           </div>
-          <button className="py-3 font-bold text-white transition-all bg-opacity-50 bg-tertiary-dark hover:bg-opacity-80 font-title">
+          <button
+            className="py-3 font-bold text-white transition-all bg-opacity-50 bg-tertiary-dark hover:bg-opacity-80 font-title"
+            onClick={handleEditUser}
+          >
             Editar perfil
           </button>
         </div>

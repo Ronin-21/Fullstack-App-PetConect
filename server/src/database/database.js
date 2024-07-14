@@ -5,7 +5,7 @@ import {
   DB_PASSWORD,
   DB_PORT,
   DB_USER,
-} from "../config.js";
+} from "../utils/constants.js";
 
 export const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   host: DB_HOST,
@@ -14,10 +14,11 @@ export const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
 });
 
 // Probar la Coneccion
-/* async function testConnection() {
+async function testConnection() {
   try {
     // Crear las tablas
-    await sequelize.sync({ force: true });
+    // Force true: DROP TABLES
+    await sequelize.sync({ force: false });
 
     console.log("All Good!!");
   } catch (err) {
@@ -25,4 +26,4 @@ export const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   }
 }
 
-testConnection(); */
+testConnection();
