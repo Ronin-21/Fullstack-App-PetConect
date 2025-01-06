@@ -1,13 +1,13 @@
 import { Sequelize } from "sequelize";
 import {
-  DB_DATABASE,
+  DB_NAME,
   DB_HOST,
   DB_PASSWORD,
   DB_PORT,
   DB_USER,
 } from "../utils/constants.js";
 
-export const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
+export const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   host: DB_HOST,
   dialect: "mysql",
   port: DB_PORT,

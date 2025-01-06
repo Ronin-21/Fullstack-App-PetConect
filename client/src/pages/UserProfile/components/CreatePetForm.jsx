@@ -44,18 +44,18 @@ const CreatePetForm = () => {
   const MySwal = withReactContent(Swal);
 
   // Convertir imagen a Base64 para preview
-  const [base64Image, setBase64Image] = useState("")
+  const [base64Image, setBase64Image] = useState("");
 
   const convertToBase64 = (e) => {
-    let reader = new FileReader()
-    reader.readAsDataURL(e.target.files[0])
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
-      setBase64Image(reader.result)
-    }
-    reader.onerror = err => {
+      setBase64Image(reader.result);
+    };
+    reader.onerror = (err) => {
       console.log(err);
-    }
-  }
+    };
+  };
 
   const {
     register,
@@ -182,7 +182,7 @@ const CreatePetForm = () => {
         <label htmlFor="chip">Chip</label>
         <input {...register("pet_chip")} type="checkbox" id="chip" />
       </div>
-      <div className="w-full items-center flex flex-col gap-1">
+      <div className="flex flex-col items-center w-full gap-1">
         <input
           {...register("pet_avatar")}
           type="file"
@@ -193,7 +193,11 @@ const CreatePetForm = () => {
         <p className="text-sm text-center text-tertiary">
           {errors.pet_avatar?.message}
         </p>
-        {base64Image == "" || base64Image == null ? "" : <img className="w-auto h-28" src={base64Image} alt="avatar" />}
+        {base64Image == "" || base64Image == null ? (
+          ""
+        ) : (
+          <img className="w-auto h-28" src={base64Image} alt="avatar" />
+        )}
       </div>
       <button
         type="submit"

@@ -15,6 +15,7 @@ const router = Router();
 router.get("/", getPets);
 router.get("/:id", getPet);
 router.post("/", auth, uploadImg.single("pet_avatar"), addPet);
+//router.post("/", auth, addPet);
 router.patch("/:id", auth, updatePet);
 router.delete("/:id", auth, deletePet);
 

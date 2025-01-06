@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { SECRET } from "../utils/constants.js";
+import { JWT_SECRET } from "../utils/constants.js";
 
 export const auth = (req, res, next) => {
   try {
@@ -18,7 +18,7 @@ export const auth = (req, res, next) => {
     // Quitar la palabra Bearer
     // token = token.slice(7, token.lenght);
 
-    jwt.verify(token, SECRET, (err, user) => {
+    jwt.verify(token, JWT_SECRET, (err, user) => {
       if (err) {
         return res.status(401).json({ message: "Token is not valid" });
       }

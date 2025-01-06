@@ -3,6 +3,7 @@ import { Likes } from "../models/likes.model.js";
 import { Pet } from "../models/pet.model.js";
 import { User } from "../models/user.model.js";
 import { validatePartialPet, validatePet } from "../schemas/pet.schema.js";
+import { uploadImg } from "../utils/cloudinary.js";
 
 // Set controllers
 
@@ -39,10 +40,15 @@ export const getPet = async (req, res) => {
 // Create a Pet
 export const addPet = async (req, res) => {
   try {
+    console.log(req.body);
+    console.log(req.file);
+    const petImg = await uploadImg(req.file.path);
+
     const age = parseInt(req.body.pet_age);
     const weight = parseFloat(req.body.pet_age);
     const chip = Boolean(req.body.pet_age);
-    const avatar = UPLOADS_IMG_URL + req.file.filename;
+    //const avatar = UPLOADS_IMG_URL + req.file.filename;
+    const avatar = petImg;
 
     const result = validatePet({
       ...req.body,
