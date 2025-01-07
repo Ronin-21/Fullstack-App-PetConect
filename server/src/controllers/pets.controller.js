@@ -1,4 +1,3 @@
-import { UPLOADS_IMG_URL } from "../utils/constants.js";
 import { Likes } from "../models/likes.model.js";
 import { Pet } from "../models/pet.model.js";
 import { User } from "../models/user.model.js";
@@ -47,7 +46,6 @@ export const addPet = async (req, res) => {
     const age = parseInt(req.body.pet_age);
     const weight = parseFloat(req.body.pet_age);
     const chip = Boolean(req.body.pet_age);
-    //const avatar = UPLOADS_IMG_URL + req.file.filename;
     const avatar = petImg;
 
     const result = validatePet({
