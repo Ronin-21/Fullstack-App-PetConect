@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "./constants.JS";
+import { JWT_SECRET } from "./constants.js";
 
 export const createAccessToken = async (payload) => {
   try {
