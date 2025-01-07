@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import cat1 from "../../assets/img/cat2.webp";
-import { useLoginUserMutation } from "../../store/api/apiSlice";
+import { useLoginUserMutation } from "../../store/api/apiSlice.js";
 
 const Login = () => {
   const [loginUser, { isSuccess, isError }] = useLoginUserMutation();

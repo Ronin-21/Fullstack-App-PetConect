@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetPetByIdQuery } from "../../store/api/apiSlice";
+import { useGetPetByIdQuery } from "../../store/api/apiSlice.js";
 
 const PetProfile = () => {
   const params = useParams();
@@ -8,19 +8,19 @@ const PetProfile = () => {
   return (
     <section className="pt-28 pb-20 flex gap-5 w-full max-w-[1300px] min-h-screen items-start justify-between mx-auto">
       {/* Aside with pet's owner profile */}
-      <div className="flex flex-col gap-3 flex-shrink-0 w-60 bg-white rounded overflow-hidden shadow-md p-5">
+      <div className="flex flex-col flex-shrink-0 gap-3 p-5 overflow-hidden bg-white rounded shadow-md w-60">
         <img
           //src="https://randomuser.me/api/portraits/men/9.jpg"
           src={pet?.User?.user_avatar}
           alt="avatar"
-          className="object-cover w-40 h-40 rounded-full self-center"
+          className="self-center object-cover w-40 h-40 rounded-full"
         />
         <div className="flex flex-col gap-2">
-          <h6 className="text-xl font-semibold text-primary-dark text-center">
+          <h6 className="text-xl font-semibold text-center text-primary-dark">
             {pet?.User?.user_full_name}
           </h6>
           <p className="text-lg text-center">{pet?.User?.user_address}</p>
-          <div className="text-tertiary text-sm">
+          <div className="text-sm text-tertiary">
             <p>{pet?.User?.user_country}</p>
             <p>{pet?.User?.user_city}</p>
             <p>{pet?.User?.user_email}</p>
@@ -28,8 +28,8 @@ const PetProfile = () => {
         </div>
       </div>
       {/* Main content with pet's info and actions */}
-      <div className="w-full flex flex-col gap-8">
-        <div className="bg-white flex flex-col gap-4 rounded overflow-hidden shadow-md p-6">
+      <div className="flex flex-col w-full gap-8">
+        <div className="flex flex-col gap-4 p-6 overflow-hidden bg-white rounded shadow-md">
           <h3 className="text-4xl font-semibold text-center text-tertiary">
             {pet?.pet_full_name}
           </h3>
@@ -42,9 +42,9 @@ const PetProfile = () => {
             Datos de la mascota
           </h6>
           <hr className="h-[3px] bg-primary-light border-none mt-[-5px]" />
-          <div className="flex gap-4 items-start justify-between">
+          <div className="flex items-start justify-between gap-4">
             <p className="w-[65ch] break-words">{pet?.pet_description}</p>
-            <div className="columns-3 w-1/3">
+            <div className="w-1/3 columns-3">
               <div className="mb-2">
                 <p className="font-semibold">Género</p>
                 <p className="text-primary">{pet?.pet_gender}</p>
@@ -72,7 +72,7 @@ const PetProfile = () => {
             </div>
           </div>
         </div>
-        <div className="bg-tertiary flex flex-col gap-4 rounded overflow-hidden shadow-md p-6">
+        <div className="flex flex-col gap-4 p-6 overflow-hidden rounded shadow-md bg-tertiary">
           <h3 className="text-4xl font-semibold text-center text-white">
             Galería
           </h3>

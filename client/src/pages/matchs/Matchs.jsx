@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Card from "../../components/Card/Card";
+import Card from "../../components/Card/Card.jsx";
 import {
   useGetPetsQuery,
   useLazyGetUserProfileQuery,
-} from "../../store/api/apiSlice";
-import { selectCurrentToken } from "../../store/auth/authSlice";
+} from "../../store/api/apiSlice.js";
+import { selectCurrentToken } from "../../store/auth/authSlice.js";
 
 const Matchs = () => {
   const { data: pets } = useGetPetsQuery();

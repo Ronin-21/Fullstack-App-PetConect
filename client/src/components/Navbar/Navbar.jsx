@@ -3,8 +3,8 @@ import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../assets/LogoPetConnect.svg";
-import { useLazyLogoutUserQuery } from "../../store/api/apiSlice";
-import { selectCurrentToken } from "../../store/auth/authSlice";
+import { useLazyLogoutUserQuery } from "../../store/api/apiSlice.js";
+import { selectCurrentToken } from "../../store/auth/authSlice.js";
 
 const Navbar = () => {
   // const [logout] = useLogoutUserMutation();

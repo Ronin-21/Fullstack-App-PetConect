@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import Marquee from "react-fast-marquee";
 import { useSelector } from "react-redux";
-import Card from "../../../../components/Card/Card";
+import Card from "../../../../components/Card/Card.jsx";
 import {
   useGetPetsQuery,
   useLazyGetUserProfileQuery,
-} from "../../../../store/api/apiSlice";
-import { selectCurrentToken } from "../../../../store/auth/authSlice";
+} from "../../../../store/api/apiSlice.js";
+import { selectCurrentToken } from "../../../../store/auth/authSlice.js";
 
 const SliderHero = () => {
   const { data: pets } = useGetPetsQuery();

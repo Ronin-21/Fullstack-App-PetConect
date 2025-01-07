@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import * as yup from "yup";
-import { useCreatePetMutation } from "../../../store/api/apiSlice";
+import { useCreatePetMutation } from "../../../store/api/apiSlice.js";
 
 const schema = yup
   .object({

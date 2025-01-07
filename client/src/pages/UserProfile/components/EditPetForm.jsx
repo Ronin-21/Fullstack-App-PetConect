@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import * as yup from "yup";
-import { useUpdatePetMutation } from "../../../store/api/apiSlice";
+import { useUpdatePetMutation } from "../../../store/api/apiSlice.js";
 
 const schema = yup
   .object({
@@ -77,9 +77,9 @@ const EditPetForm = ({ id }) => {
           {...register("pet_full_name")}
           placeholder="Nombre de la mascota"
           autoFocus
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.pet_full_name?.message}
         </p>
       </div>
@@ -87,9 +87,9 @@ const EditPetForm = ({ id }) => {
         <textarea
           {...register("pet_description")}
           placeholder="Escriba una breve descripción"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white resize-none"
+          className="w-full p-3 bg-white border-b outline-none resize-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.pet_description?.message}
         </p>
       </div>
@@ -97,21 +97,21 @@ const EditPetForm = ({ id }) => {
         <input
           {...register("pet_breed")}
           placeholder="Raza"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.pet_breed?.message}
         </p>
       </div>
       <div className="w-full">
         <select
           {...register("pet_gender")}
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         >
           <option value="Macho">Macho</option>
           <option value="Hembra">Hembra</option>
         </select>
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.pet_gender?.message}
         </p>
       </div>
@@ -119,9 +119,9 @@ const EditPetForm = ({ id }) => {
         <input
           {...register("pet_age")}
           placeholder="Edad"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.pet_age?.message}
         </p>
       </div>
@@ -129,9 +129,9 @@ const EditPetForm = ({ id }) => {
         <input
           {...register("pet_weight")}
           placeholder="Peso"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.pet_weight?.message}
         </p>
       </div>
@@ -139,13 +139,13 @@ const EditPetForm = ({ id }) => {
         <input
           {...register("pet_nationality")}
           placeholder="Nacionalidad"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.pet_nationality?.message}
         </p>
       </div>
-      <div className="w-full flex items-center gap-4">
+      <div className="flex items-center w-full gap-4">
         <label htmlFor="chip">Chip</label>
         <input {...register("pet_chip")} type="checkbox" id="chip" />
       </div>

@@ -2,11 +2,11 @@ import { Provider } from "react-redux";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import banner from "../../assets/hero.webp";
-import { useGetUserProfileQuery } from "../../store/api/apiSlice";
-import { store } from "../../store/store";
-import CreatePetForm from "./components/CreatePetForm";
-import PetCard from "./components/PetCard";
-import EditUserForm from "./components/EditUserForm";
+import { useGetUserProfileQuery } from "../../store/api/apiSlice.js";
+import { store } from "../../store/store.js";
+import CreatePetForm from "./components/CreatePetForm.jsx";
+import PetCard from "./components/PetCard.jsx";
+import EditUserForm from "./components/EditUserForm.jsx";
 
 const UserProfile = () => {
   const MySwal = withReactContent(Swal);

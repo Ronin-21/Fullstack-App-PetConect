@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectCurrentToken } from "../../store/auth/authSlice";
+import { selectCurrentToken } from "../../store/auth/authSlice.js";
 import { useEffect } from "react";
 
 const ProtectedRoute = ({ redirectTo, children }) => {

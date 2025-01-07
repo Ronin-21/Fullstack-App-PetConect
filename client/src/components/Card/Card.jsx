@@ -6,7 +6,7 @@ import withReactContent from "sweetalert2-react-content";
 import {
   useSetDislikesMutation,
   useSetLikesMutation,
-} from "../../store/api/apiSlice";
+} from "../../store/api/apiSlice.js";
 
 const Card = ({ petInfo, userId, allowed }) => {
   const [setLikes, { isSuccess, isError, error }] = useSetLikesMutation();

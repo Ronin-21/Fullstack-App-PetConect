@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import * as yup from "yup";
-import { useUpdateUserMutation } from "../../../store/api/apiSlice";
+import { useUpdateUserMutation } from "../../../store/api/apiSlice.js";
 
 const schema = yup
   .object({
@@ -70,9 +70,9 @@ const EditUserForm = () => {
           {...register("user_full_name")}
           placeholder="Nombre de Usuario"
           autoFocus
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_full_name?.message}
         </p>
       </div>
@@ -80,9 +80,9 @@ const EditUserForm = () => {
         <textarea
           {...register("user_address")}
           placeholder="Dirección o Domicilio"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white resize-none"
+          className="w-full p-3 bg-white border-b outline-none resize-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_address?.message}
         </p>
       </div>
@@ -90,9 +90,9 @@ const EditUserForm = () => {
         <input
           {...register("user_country")}
           placeholder="País"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_country?.message}
         </p>
       </div>
@@ -100,9 +100,9 @@ const EditUserForm = () => {
         <input
           {...register("user_city")}
           placeholder="Ciudad"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_city?.message}
         </p>
       </div>
@@ -110,9 +110,9 @@ const EditUserForm = () => {
         <input
           {...register("user_email")}
           placeholder="Email"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_email?.message}
         </p>
       </div>

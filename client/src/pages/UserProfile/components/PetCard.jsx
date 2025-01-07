@@ -1,8 +1,8 @@
 import { Provider } from "react-redux";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useEliminatePetMutation } from "../../../store/api/apiSlice";
-import { store } from "../../../store/store";
+import { useEliminatePetMutation } from "../../../store/api/apiSlice.js";
+import { store } from "../../../store/store.js";
 import EditPetForm from "./EditPetForm";
 
 const PetCard = ({ info }) => {

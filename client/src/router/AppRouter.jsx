@@ -3,15 +3,15 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
-import Error404 from "../layout/Error404";
-import MainLayout from "../layout/MainLayout";
-import Home from "../pages/Home/Home";
-import Login from "../pages/Login/Login";
-import PetProfile from "../pages/PetProfile/PetProfile";
-import Register from "../pages/Register/Register";
-import UserProfile from "../pages/UserProfile/UserProfile";
-import Matchs from "../pages/matchs/Matchs";
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute.jsx";
+import Error404 from "../layout/Error404.jsx";
+import MainLayout from "../layout/MainLayout.jsx";
+import Home from "../pages/Home/Home.jsx";
+import Login from "../pages/Login/Login.jsx";
+import PetProfile from "../pages/PetProfile/PetProfile.jsx";
+import Register from "../pages/Register/Register.jsx";
+import UserProfile from "../pages/UserProfile/UserProfile.jsx";
+import Matchs from "../pages/matchs/Matchs.jsx";
 
 export const AppRouter = createBrowserRouter(
   createRoutesFromElements(

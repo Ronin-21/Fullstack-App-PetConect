@@ -1,8 +1,8 @@
-import FindPet from "./components/FindPet/FindPet";
-import Hero from "./components/Hero/Hero";
-import Services from "./components/Services/Services";
-import SliderHero from "./components/SliderHero/SliderHero";
-import { Testimonials } from "./components/Testimonials/Testimonials";
+import FindPet from "./components/FindPet/FindPet.jsx";
+import Hero from "./components/Hero/Hero.jsx";
+import Services from "./components/Services/Services.jsx";
+import SliderHero from "./components/SliderHero/SliderHero.jsx";
+import { Testimonials } from "./components/Testimonials/Testimonials.jsx";
 
 const Home = () => {
   return (

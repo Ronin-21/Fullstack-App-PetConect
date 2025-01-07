@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import * as yup from "yup";
-import { useRegisterUserMutation } from "../../../store/api/apiSlice";
+import { useRegisterUserMutation } from "../../../store/api/apiSlice.js";
 
 const schema = yup
   .object({
@@ -90,16 +90,16 @@ const RegisterForm = () => {
   return (
     <form
       onSubmit={handleSubmit(formSubmit)}
-      className="flex flex-col items-center justify-center gap-5 w-full"
+      className="flex flex-col items-center justify-center w-full gap-5"
     >
       <div className="w-full">
         <input
           {...register("user_full_name")}
           placeholder="Nombre completo"
           autoFocus
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_full_name?.message}
         </p>
       </div>
@@ -107,9 +107,9 @@ const RegisterForm = () => {
         <input
           {...register("user_email")}
           placeholder="Email"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_email?.message}
         </p>
       </div>
@@ -118,9 +118,9 @@ const RegisterForm = () => {
           {...register("user_password")}
           type="password"
           placeholder="Contraseña"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_password?.message}
         </p>
       </div>
@@ -129,9 +129,9 @@ const RegisterForm = () => {
           {...register("confirmPassword")}
           type="password"
           placeholder="Confirmar contraseña"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.confirmPassword && "Las contraseñas no coinciden!"}
         </p>
       </div>
@@ -139,9 +139,9 @@ const RegisterForm = () => {
         <input
           {...register("user_country")}
           placeholder="País"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_country?.message}
         </p>
       </div>
@@ -149,9 +149,9 @@ const RegisterForm = () => {
         <input
           {...register("user_city")}
           placeholder="Ciudad"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_city?.message}
         </p>
       </div>
@@ -159,9 +159,9 @@ const RegisterForm = () => {
         <input
           {...register("user_address")}
           placeholder="Calle"
-          className="p-3 outline-none w-full border-b border-primary-light bg-white"
+          className="w-full p-3 bg-white border-b outline-none border-primary-light"
         />
-        <p className="text-tertiary text-center text-sm">
+        <p className="text-sm text-center text-tertiary">
           {errors.user_address?.message}
         </p>
       </div>
