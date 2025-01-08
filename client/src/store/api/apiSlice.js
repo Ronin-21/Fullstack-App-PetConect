@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_URL_DEL_BACKEND,
+    baseUrl: import.meta.env.VITE_BACKEND_URL,
     credentials: "include",
     // Comprueba si existe un token y lo envia en el header
     /* prepareHeaders: (headers, { getState }) => {
